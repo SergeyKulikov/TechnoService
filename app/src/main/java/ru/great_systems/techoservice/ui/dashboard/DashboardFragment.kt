@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.great_systems.techoservice.R
 import ru.great_systems.techoservice.databinding.FragmentDashboardBinding
 import ru.great_systems.techoservice.domain.ProjectItem
+import ru.great_systems.techoservice.domain.ProjectList
 import ru.great_systems.techoservice.ui.adapter.ProjectListAdapter
 
 class DashboardFragment : Fragment() {
@@ -78,12 +79,13 @@ class DashboardFragment : Fragment() {
     }
 
     private fun getProjects() :  MutableList<ProjectItem> {
-        val list: MutableList<ProjectItem> = mutableListOf()
+        val list: MutableList<ProjectItem> = arrayListOf();
+        var mBundle: Bundle? = Bundle()
+        mBundle = arguments
 
-        for (i in 1..10) {
-            val item = ProjectItem(i.toString(),"Project {$i}", "Description", "Me", "", "", (1500*i).toDouble() )
-            list.add(item)
-        }
+        val proj: ProjectList = mBundle!!.getSerializable("PROJECT_LIST") as ProjectList
+
+        list.addAll(proj.Projects)
         return list
     }
 

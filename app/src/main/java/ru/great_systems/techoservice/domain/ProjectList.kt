@@ -1,5 +1,7 @@
 package ru.great_systems.techoservice.domain
 
-class ProjectList {
+import java.io.Serializable
+
+class ProjectList : Serializable {
     var Projects: MutableList<ProjectItem> = mutableListOf()
 }
