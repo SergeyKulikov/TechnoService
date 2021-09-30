@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Techno Service</string>
+    <string name="title_home">Данные</string>
+    <string name="title_dashboard">Проекты</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="caption_json">JSON</string>
+    <string name="sample_text">{ \t\"Projects\": [{ \t\t\"id\": \"1\", \t\t\"subject\": \"Проект 1\", \t\t\"description\": \"Проект интернет-платформы для рынка лизинга\", \t\t\"createdBy\": \"Александр Иванов\", \t\t\"startDate\": \"2021-09-24T09:00:00\", \t\t\"endDate\": \"2021-10-24T09:00:00\", \t\t\"cost\": 120000.5 \t}, { \t\t\"id\": \"2\", \t\t\"subject\": \"Проект 2\", \t\t\"description\": \"Бизнес-мессенджер\", \t\t\"createdBy\": \"Марина Ионова\", \t\t\"startDate\": \"2021-10-01T09:00:00\", \t\t\"endDate\": \"2021-11-14T09:00:00\", \t\t\"cost\": 720400 \t}, { \t\t\"id\": \"3\", \t\t\"subject\": \"Проект 3\", \t\t\"description\": \"Проект VR-планетария\", \t\t\"createdBy\": \"Андрей Линев\", \t\t\"startDate\": \"2022-02-05T09:00:00\", \t\t\"endDate\": \"2022-02-25T09:00:00\", \t\t\"cost\": 80300.25 \t}] }</string>
+    <string name="btn_save">Сохранить</string>
+</resources>
