@@ -1,6 +1,5 @@
 package ru.great_systems.techoservice.ui.home
 
-import android.R.attr
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,9 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import ru.great_systems.techoservice.databinding.FragmentHomeBinding
-import ru.great_systems.techoservice.domain.ProjectItem
-import android.R.attr.data
-import org.w3c.dom.NameList
+import com.google.gson.reflect.TypeToken
+import ru.great_systems.techoservice.MainActivity
+import ru.great_systems.techoservice.domain.ProjectList
 
 
 class HomeFragment : Fragment() {
@@ -43,15 +42,13 @@ class HomeFragment : Fragment() {
         })
 
         binding.btnSave.setOnClickListener {
-            var args = Bundle();
-            Log.d("TAG", "Text: "+tvJSON.text);
+            val gson = Gson()
 
-            // val gson = Gson()
-            // val m: MutableList<ProjectItem> = gson.fromJson(tvJSON.text, ProjectItem::class.java)
+            val arrayProjectType = object : TypeToken<ProjectList>() {}.type
+            var projectList: ProjectList = gson.fromJson(tvJSON.text.toString(), arrayProjectType)
 
-
+            (activity as MainActivity?)!!.changeFolder(1, projectList);
         }
-
 
         return root
     }

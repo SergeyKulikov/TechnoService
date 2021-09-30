@@ -1,6 +1,7 @@
 package ru.great_systems.techoservice
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -8,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import ru.great_systems.techoservice.databinding.ActivityMainBinding
+import ru.great_systems.techoservice.domain.ProjectList
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,10 +33,13 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        // var gson = Gson()
-        // var mMineUserEntity = gson?.fromJson(response, MineUserEntity.MineUserInfo::class.java)
-
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+
+    fun changeFolder(i: Int, projectList: ProjectList) {
+        val view: View = binding.navView.findViewById(R.id.navigation_dashboard)
+        view.performClick()
+    }
+
 }
