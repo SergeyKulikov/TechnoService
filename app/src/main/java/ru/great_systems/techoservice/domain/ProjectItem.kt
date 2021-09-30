@@ -1,12 +1,14 @@
 package ru.great_systems.techoservice.domain
 
-data class ProjectItem(
+import java.io.Serializable
+
+data class ProjectItem (
     val id: String,
     val subject: String,
     val description: String,
     val createdBy: String,
+    val startDate: String,
     val endDate: String,
-    val finishDate: String,
     val cost: Double
-)
+) : Serializable
 

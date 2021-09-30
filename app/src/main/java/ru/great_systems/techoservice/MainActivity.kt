@@ -35,12 +35,11 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 
-    fun changeFolder(i: Int, projectList: ProjectList) {
+    fun changeFolder(projectList: ProjectList) {
         val args = Bundle()
         args.putSerializable("PROJECT_LIST", projectList)
 

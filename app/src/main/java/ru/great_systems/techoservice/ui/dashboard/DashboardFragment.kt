@@ -2,16 +2,12 @@ package ru.great_systems.techoservice.ui.dashboard
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.great_systems.techoservice.R
 import ru.great_systems.techoservice.databinding.FragmentDashboardBinding
 import ru.great_systems.techoservice.domain.ProjectItem
 import ru.great_systems.techoservice.domain.ProjectList
@@ -43,7 +39,6 @@ class DashboardFragment : Fragment() {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
 
 
         /*
@@ -78,14 +73,18 @@ class DashboardFragment : Fragment() {
         binding.rvProjects.adapter = adapter
     }
 
-    private fun getProjects() :  MutableList<ProjectItem> {
+    private fun getProjects(): MutableList<ProjectItem> {
         val list: MutableList<ProjectItem> = arrayListOf();
         var mBundle: Bundle? = Bundle()
         mBundle = arguments
 
-        val proj: ProjectList = mBundle!!.getSerializable("PROJECT_LIST") as ProjectList
+        if (mBundle != null) {
+            if (mBundle.containsKey("PROJECT_LIST")) {
+                val proj: ProjectList = mBundle.getSerializable("PROJECT_LIST") as ProjectList
 
-        list.addAll(proj.Projects)
+                list.addAll(proj.Projects)
+            }
+        }
         return list
     }
 

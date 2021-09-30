@@ -3,16 +3,14 @@ package ru.great_systems.techoservice.ui.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.great_systems.techoservice.R
 import ru.great_systems.techoservice.domain.ProjectItem
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ProjectListAdapter(
@@ -25,9 +23,6 @@ class ProjectListAdapter(
 
     init {
     }
-
-    private val fullDateFormat: SimpleDateFormat =
-        SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
 
     private val calendar: Calendar = Calendar.getInstance(Locale.getDefault())
 
@@ -45,30 +40,25 @@ class ProjectListAdapter(
         val project = items[position]
 
         holder.tvName.text = project.subject;
-        holder.tvPeriod.text = project.endDate + " - " +project.finishDate
+        holder.tvPeriod.text = project.startDate + " - " + project.endDate
         holder.tvAuthor.text = project.createdBy
-    }
 
-    private fun longToDateString(time: Long?): String {
-        if (time == null) return ""
-        return fullDateFormat.format(Date(time))
+        holder.itemView.setOnClickListener {
+
+            val args = Bundle()
+            args.putSerializable("PROJECT", project)
+
+            findNavController(it).navigate(
+                R.id.action_navigation_dashboard_to_projectInfoFragment,
+                args
+            )
+        }
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
 
-    private fun getLongByDateString(dateString: String): Long {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val date: LocalDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd.MM.yyyy"))
 
-            date.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
-        } else {
-            val calendar: Calendar = Calendar.getInstance()
-            val parser = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-            calendar.time = parser.parse(dateString)
 
-            calendar.timeInMillis
-        }
-    }
 }
