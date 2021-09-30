@@ -30,6 +30,12 @@ class MainActivity : AppCompatActivity() {
 
             )
         )
+
+
+
+        // var gson = Gson()
+        // var mMineUserEntity = gson?.fromJson(response, MineUserEntity.MineUserInfo::class.java)
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }

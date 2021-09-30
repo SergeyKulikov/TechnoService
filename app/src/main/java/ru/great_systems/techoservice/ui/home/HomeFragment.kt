@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import ru.great_systems.techoservice.R
 import ru.great_systems.techoservice.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -31,9 +30,9 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        val tvJSON: TextView = binding.tvJSON
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+            tvJSON.text = it
         })
         return root
     }

@@ -8,25 +8,26 @@
     tools:context=".ui.home.HomeFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilContract"
+        android:id="@+id/tilJSON"
         style="@style/BoxColor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="top"
         android:hint="@string/caption_json"
+        android:gravity="top"
         android:textColorHint="@color/transparent_black50"
-        app:endIconMode="dropdown_menu"
+        app:endIconMode="none"
         app:hintTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:hintTextColor="@color/transparent_black50"
-        app:layout_constraintBottom_toTopOf="@+id/materialButton"
+        app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <AutoCompleteTextView
-            android:id="@+id/tvContract"
+            android:id="@+id/tvJSON"
+            android:gravity="top"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:inputType="textMultiLine"
             android:paddingStart="16dp"
             android:paddingTop="8dp"
@@ -38,7 +39,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
+        android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_save"
