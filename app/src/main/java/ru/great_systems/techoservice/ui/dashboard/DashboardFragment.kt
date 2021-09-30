@@ -25,7 +25,12 @@ class DashboardFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var adapter: ProjectListAdapter
-    private lateinit var context: Context
+    private lateinit var ctx: Context
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        ctx = context
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +43,7 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        context = view?.context!!
+
 
         /*
         val textView: TextView = binding.textDashboard
@@ -63,19 +68,23 @@ class DashboardFragment : Fragment() {
 
     private fun setUpView() {
         val layoutManager = LinearLayoutManager(context)
-
         val projects: MutableList<ProjectItem> = mutableListOf();
 
-
-
-        adapter = ProjectListAdapter(context, projects) {
+        adapter = ProjectListAdapter(ctx, getProjects()) {
         }
-        // Log.d(TAG,"getCommitmentsAsItemByContract("+contractId+"): "+adapter.getItemCount())
-
-        // adapter.setComplexObligationFilter()
 
         binding.rvProjects.layoutManager = layoutManager
         binding.rvProjects.adapter = adapter
+    }
+
+    private fun getProjects() :  MutableList<ProjectItem> {
+        val list: MutableList<ProjectItem> = mutableListOf()
+
+        for (i in 1..10) {
+            val item = ProjectItem(i.toString(),"Project {$i}", "Description", "Me", "", "", (1500*i).toDouble() )
+            list.add(item)
+        }
+        return list
     }
 
 }

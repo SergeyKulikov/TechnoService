@@ -31,8 +31,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-
-
         // var gson = Gson()
         // var mMineUserEntity = gson?.fromJson(response, MineUserEntity.MineUserInfo::class.java)
 

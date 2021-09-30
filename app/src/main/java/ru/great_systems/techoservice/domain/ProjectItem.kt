@@ -5,8 +5,8 @@ data class ProjectItem(
     val subject: String,
     val description: String,
     val createdBy: String,
-    val startDate: String,
     val endDate: String,
+    val finishDate: String,
     val cost: Double
 )
 

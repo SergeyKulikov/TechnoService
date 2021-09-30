@@ -3,7 +3,6 @@ package ru.great_systems.techoservice.ui.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,8 +43,10 @@ class ProjectListAdapter(
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ProjectListViewHolder, position: Int) {
         val project = items[position]
-       //holder.item.text = project.id
 
+        holder.tvName.text = project.subject;
+        holder.tvPeriod.text = project.endDate + " - " +project.finishDate
+        holder.tvAuthor.text = project.createdBy
     }
 
     private fun longToDateString(time: Long?): String {
@@ -56,7 +57,6 @@ class ProjectListAdapter(
     override fun getItemCount(): Int {
         return items.size
     }
-
 
     private fun getLongByDateString(dateString: String): Long {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
