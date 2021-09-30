@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     fun changeFolder(i: Int, projectList: ProjectList) {
         val view: View = binding.navView.findViewById(R.id.navigation_dashboard)
         view.performClick()
+
     }
 
 }
