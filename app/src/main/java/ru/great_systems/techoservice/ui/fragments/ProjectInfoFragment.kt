@@ -1,5 +1,6 @@
 package ru.great_systems.techoservice.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -24,7 +25,7 @@ private const val ARG_PROJECT = "PROJECT"
  * Use the [ProjectInfoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProjectInfoFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
+class ProjectInfoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var project: ProjectItem? = null
     private lateinit var binding: FragmentProjectInfoBinding
@@ -35,6 +36,8 @@ class ProjectInfoFragment : Fragment(), NavigationView.OnNavigationItemSelectedL
         arguments?.let {
             project = it.getSerializable("PROJECT") as ProjectItem
         }
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = project?.subject
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -82,13 +85,13 @@ class ProjectInfoFragment : Fragment(), NavigationView.OnNavigationItemSelectedL
 
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
                 findNavController(this).popBackStack()
             }
         }
-        return true
+        return super.onOptionsItemSelected(item)
     }
 
 }
