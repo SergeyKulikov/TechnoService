@@ -1,10 +1,17 @@
 package ru.great_systems.techoservice.ui.fragments
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import com.google.android.material.navigation.NavigationView
+import ru.great_systems.techoservice.R
 import ru.great_systems.techoservice.databinding.FragmentProjectInfoBinding
 import ru.great_systems.techoservice.domain.ProjectItem
 
@@ -17,16 +24,22 @@ private const val ARG_PROJECT = "PROJECT"
  * Use the [ProjectInfoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProjectInfoFragment : Fragment() {
+class ProjectInfoFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
     // TODO: Rename and change types of parameters
     private var project: ProjectItem? = null
     private lateinit var binding: FragmentProjectInfoBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             project = it.getSerializable("PROJECT") as ProjectItem
         }
+
+        val navigationView: NavigationView = requireActivity().findViewById()
+        navigationView.checkedItem(R.id.home).setNavigationItemSelectedListener(this)
+        setNavigationViewListner()
+
     }
 
     override fun onCreateView(
@@ -38,16 +51,19 @@ class ProjectInfoFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpView()
+
+
     }
 
     companion object {
         /**
          * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
+         * this fragment using the provided parameters.NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        setNavigationViewListner();
          *
          * @param param1 Parameter 1.
          * @return A new instance of fragment ProjectInfoFragment.
@@ -68,7 +84,29 @@ class ProjectInfoFragment : Fragment() {
         binding.tvDateFinish.text = project!!.endDate
         binding.tvAuthor.text = project!!.createdBy
         binding.tvDescription.text = project!!.description
+
     }
 
+    fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        //getMenuInflater().inflate(R.menu.navigation__drawer, menu)
+        return true
+    }
+
+    private fun setNavigationViewListner() {
+        val navigationView: NavigationView
+
+        // navigationView.
+        navigationView.setNavigationItemSelectedListener(this)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                findNavController(this).popBackStack()
+            }
+        }
+        return true
+    }
 
 }

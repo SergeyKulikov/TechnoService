@@ -2,13 +2,11 @@ package ru.great_systems.techoservice.ui.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.internal.ContextUtils.getActivity
 import ru.great_systems.techoservice.R
 import ru.great_systems.techoservice.domain.ProjectItem
 import java.util.*
@@ -22,17 +20,12 @@ class ProjectListAdapter(
     private var mInflater: LayoutInflater = LayoutInflater.from(context)
 
     init {
-    }
-
-    private val calendar: Calendar = Calendar.getInstance(Locale.getDefault())
+     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectListViewHolder {
         val view: View = mInflater.inflate(R.layout.layout_project_item, parent, false)
 
-        val holder = ProjectListViewHolder(view)
-        holder.itemView.setOnClickListener { listener.invoke(holder.adapterPosition) }
-
-        return ProjectListViewHolder(view)
+         return ProjectListViewHolder(view)
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -43,22 +36,22 @@ class ProjectListAdapter(
         holder.tvPeriod.text = project.startDate + " - " + project.endDate
         holder.tvAuthor.text = project.createdBy
 
-        holder.itemView.setOnClickListener {
 
+
+        holder.itemView.setOnClickListener {
             val args = Bundle()
             args.putSerializable("PROJECT", project)
 
+            // listener.invoke(holder.adapterPosition)
             findNavController(it).navigate(
-                R.id.action_navigation_dashboard_to_projectInfoFragment,
-                args
-            )
+                R.id.action_navigation_dashboard_to_projectInfoFragment, args)
         }
+
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
-
 
 
 }

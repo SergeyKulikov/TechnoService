@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ru.great_systems.techoservice.databinding.FragmentDashboardBinding
 import ru.great_systems.techoservice.domain.ProjectItem
 import ru.great_systems.techoservice.domain.ProjectList
@@ -40,7 +42,6 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
         /*
         val textView: TextView = binding.textDashboard
         dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
@@ -64,13 +65,19 @@ class DashboardFragment : Fragment() {
 
     private fun setUpView() {
         val layoutManager = LinearLayoutManager(context)
-        val projects: MutableList<ProjectItem> = mutableListOf();
 
         adapter = ProjectListAdapter(ctx, getProjects()) {
         }
 
         binding.rvProjects.layoutManager = layoutManager
         binding.rvProjects.adapter = adapter
+
+        val dividerItemDecoration = DividerItemDecoration(
+            binding.rvProjects.context,
+            RecyclerView.VERTICAL
+        )
+        binding.rvProjects.addItemDecoration(dividerItemDecoration)
+
     }
 
     private fun getProjects(): MutableList<ProjectItem> {
