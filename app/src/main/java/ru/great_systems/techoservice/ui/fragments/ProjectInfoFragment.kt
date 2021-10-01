@@ -35,11 +35,6 @@ class ProjectInfoFragment : Fragment(), NavigationView.OnNavigationItemSelectedL
         arguments?.let {
             project = it.getSerializable("PROJECT") as ProjectItem
         }
-
-        val navigationView: NavigationView = requireActivity().findViewById()
-        navigationView.checkedItem(R.id.home).setNavigationItemSelectedListener(this)
-        setNavigationViewListner()
-
     }
 
     override fun onCreateView(
@@ -85,19 +80,6 @@ class ProjectInfoFragment : Fragment(), NavigationView.OnNavigationItemSelectedL
         binding.tvAuthor.text = project!!.createdBy
         binding.tvDescription.text = project!!.description
 
-    }
-
-    fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.navigation__drawer, menu)
-        return true
-    }
-
-    private fun setNavigationViewListner() {
-        val navigationView: NavigationView
-
-        // navigationView.
-        navigationView.setNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
